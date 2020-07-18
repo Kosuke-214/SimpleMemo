@@ -1,24 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eoa-EN-YN7">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--List-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemoListViewController" customModule="SimpleMemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kVS-vf-YbD">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="kVS-vf-YbD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="L57-p5-g95"/>
+                            <constraint firstItem="kVS-vf-YbD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NAa-Ol-ShT"/>
+                            <constraint firstAttribute="bottom" secondItem="kVS-vf-YbD" secondAttribute="bottom" id="Nha-Hx-P0U"/>
+                            <constraint firstItem="kVS-vf-YbD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="rdR-MJ-xrc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="List" id="r91-gT-5Wd"/>
+                    <connections>
+                        <outlet property="tableView" destination="kVS-vf-YbD" id="ege-nl-c61"/>
+                        <segue destination="P7N-i3-NVv" kind="presentation" identifier="toEditViewController" id="ByI-ci-dGZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="137.94642857142856"/>
+        </scene>
+        <!--Memo Edit View Controller-->
+        <scene sceneID="ZCL-1L-4ir">
+            <objects>
+                <viewController id="P7N-i3-NVv" customClass="MemoEditViewController" customModule="SimpleMemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1M5-To-JYb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Arn-CE-Jbt">
+                                <rect key="frame" x="0.0" y="104" width="414" height="704"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Title" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="861-fr-hFA">
+                                <rect key="frame" x="0.0" y="56" width="414" height="48"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="mlq-ry-d4c"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nH4-ba-42m">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <items>
+                                    <navigationItem title="Title" id="xDa-x8-0nk">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" image="multiply.circle" catalog="system" id="Loq-Er-qye">
+                                            <connections>
+                                                <segue destination="fZj-cJ-IIZ" kind="unwind" unwindAction="closeEditorWithSegue:" id="ffX-Rx-BY4"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Arn-CE-Jbt" firstAttribute="bottom" secondItem="DkE-VK-UyY" secondAttribute="bottom" id="9ez-5H-eks"/>
+                            <constraint firstItem="861-fr-hFA" firstAttribute="top" secondItem="nH4-ba-42m" secondAttribute="bottom" id="EbO-c1-G0V"/>
+                            <constraint firstItem="nH4-ba-42m" firstAttribute="top" secondItem="DkE-VK-UyY" secondAttribute="top" id="GTJ-Jx-a3r"/>
+                            <constraint firstItem="861-fr-hFA" firstAttribute="leading" secondItem="DkE-VK-UyY" secondAttribute="leading" id="Qdc-Hp-Lmv"/>
+                            <constraint firstItem="nH4-ba-42m" firstAttribute="trailing" secondItem="DkE-VK-UyY" secondAttribute="trailing" id="VMW-7a-8IL"/>
+                            <constraint firstItem="Arn-CE-Jbt" firstAttribute="leading" secondItem="DkE-VK-UyY" secondAttribute="leading" id="Vhb-wU-dxX"/>
+                            <constraint firstItem="Arn-CE-Jbt" firstAttribute="top" secondItem="861-fr-hFA" secondAttribute="bottom" id="czC-78-AnI"/>
+                            <constraint firstItem="861-fr-hFA" firstAttribute="trailing" secondItem="DkE-VK-UyY" secondAttribute="trailing" id="efG-O5-Fg8"/>
+                            <constraint firstItem="Arn-CE-Jbt" firstAttribute="trailing" secondItem="DkE-VK-UyY" secondAttribute="trailing" id="ksE-Xt-ZaB"/>
+                            <constraint firstItem="nH4-ba-42m" firstAttribute="leading" secondItem="DkE-VK-UyY" secondAttribute="leading" id="p9n-le-JyE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DkE-VK-UyY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="53N-Dg-6h8"/>
+                    <connections>
+                        <outlet property="memoText" destination="Arn-CE-Jbt" id="5hm-kg-Jes"/>
+                        <outlet property="memoTitle" destination="861-fr-hFA" id="sVv-DF-QDf"/>
+                        <outlet property="titleHeader" destination="xDa-x8-0nk" id="VWr-O5-khN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1xR-s1-Err" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="fZj-cJ-IIZ" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1763.7681159420292" y="137.94642857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ayn-wW-g5Y">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eoa-EN-YN7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lxa-F1-QDT">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="VUv-bS-ULI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dbz-Ts-UB2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="137.94642857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="multiply.circle" catalog="system" width="128" height="121"/>
+    </resources>
 </document>
