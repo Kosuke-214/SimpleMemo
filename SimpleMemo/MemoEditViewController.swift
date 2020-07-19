@@ -7,36 +7,64 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class MemoEditViewController: UIViewController {
 
     @IBOutlet weak var titleHeader: UINavigationItem!
-    @IBOutlet weak var memoTitle: UITextView!
+    @IBOutlet weak var memoTitle: UITextField!
     @IBOutlet weak var memoText: UITextView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     var titleText: String?
     var memo: String?
+    var index: Int?
 
     override func viewWillAppear(_ animated: Bool) {
-        presentingViewController?.beginAppearanceTransition(false, animated: animated)
         super.viewWillAppear(animated)
+        if #available(iOS 13.0, *) {
+            presentingViewController?.beginAppearanceTransition(false, animated: animated)
+        }
 
-        titleHeader.title = titleText
-        memoTitle.text = titleText
-        memoText.text = memo
+        MemoDao.getMemo("MemoData")?.forEach { data in
+            if data.title == titleText {
+                titleHeader.title = data.title
+                memoTitle.text = data.title
+                memoText.text = data.content
+            }
+
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presentingViewController?.endAppearanceTransition()
+        if #available(iOS 13.0, *) {
+            presentingViewController?.endAppearanceTransition()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        presentingViewController?.beginAppearanceTransition(true, animated: animated)
-        presentingViewController?.endAppearanceTransition()
+        if #available(iOS 13.0, *) {
+            presentingViewController?.beginAppearanceTransition(true, animated: animated)
+            presentingViewController?.endAppearanceTransition()
+        }
     }
     
+    @IBAction func onClickSave(_ sender: Any) {
+        if let saveTitle = memoTitle.text,
+            let saveMemo = memoText.text {
 
+            if var savedData: [MemoData] = MemoDao.getMemo("MemoData") {
+                savedData.append(MemoData(title: saveTitle, content: saveMemo))
+                MemoDao.saveMemo(savedData)
+            }
+
+        }
+        var style = ToastStyle()
+        style.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        self.view.makeToast("Saved!!", duration: 1, position: ToastPosition.center, style: style)
+    }
+    
     /*
     // MARK: - Navigation
 

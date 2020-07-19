@@ -30,7 +30,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="List" id="r91-gT-5Wd"/>
+                    <navigationItem key="navigationItem" title="List" id="r91-gT-5Wd">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" id="t4d-cG-C9m">
+                            <connections>
+                                <segue destination="P7N-i3-NVv" kind="presentation" id="dss-Qr-5zl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="kVS-vf-YbD" id="ege-nl-c61"/>
                         <segue destination="P7N-i3-NVv" kind="presentation" identifier="toEditViewController" id="ByI-ci-dGZ"/>
@@ -49,28 +55,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Arn-CE-Jbt">
-                                <rect key="frame" x="0.0" y="104" width="414" height="704"/>
+                                <rect key="frame" x="2" y="111.5" width="410" height="696.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Title" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="861-fr-hFA">
-                                <rect key="frame" x="0.0" y="56" width="414" height="48"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="mlq-ry-d4c"/>
-                                </constraints>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nH4-ba-42m">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
-                                    <navigationItem title="Title" id="xDa-x8-0nk">
-                                        <barButtonItem key="rightBarButtonItem" title="Item" image="multiply.circle" catalog="system" id="Loq-Er-qye">
+                                    <navigationItem title="No Title" id="xDa-x8-0nk">
+                                        <barButtonItem key="leftBarButtonItem" title="Save" image="save" id="lEm-RC-hD1">
+                                            <connections>
+                                                <action selector="onClickSave:" destination="P7N-i3-NVv" id="3ag-be-jaW"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Item" image="close" id="Loq-Er-qye">
                                             <connections>
                                                 <segue destination="fZj-cJ-IIZ" kind="unwind" unwindAction="closeEditorWithSegue:" id="ffX-Rx-BY4"/>
                                             </connections>
@@ -78,18 +78,23 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gYo-SP-oYH">
+                                <rect key="frame" x="2" y="61" width="410" height="45.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Arn-CE-Jbt" firstAttribute="bottom" secondItem="DkE-VK-UyY" secondAttribute="bottom" id="9ez-5H-eks"/>
-                            <constraint firstItem="861-fr-hFA" firstAttribute="top" secondItem="nH4-ba-42m" secondAttribute="bottom" id="EbO-c1-G0V"/>
                             <constraint firstItem="nH4-ba-42m" firstAttribute="top" secondItem="DkE-VK-UyY" secondAttribute="top" id="GTJ-Jx-a3r"/>
-                            <constraint firstItem="861-fr-hFA" firstAttribute="leading" secondItem="DkE-VK-UyY" secondAttribute="leading" id="Qdc-Hp-Lmv"/>
+                            <constraint firstItem="DkE-VK-UyY" firstAttribute="trailing" secondItem="gYo-SP-oYH" secondAttribute="trailing" constant="2" id="M39-FJ-SZm"/>
+                            <constraint firstItem="gYo-SP-oYH" firstAttribute="top" secondItem="nH4-ba-42m" secondAttribute="bottom" constant="5" id="PN4-kV-oyP"/>
                             <constraint firstItem="nH4-ba-42m" firstAttribute="trailing" secondItem="DkE-VK-UyY" secondAttribute="trailing" id="VMW-7a-8IL"/>
-                            <constraint firstItem="Arn-CE-Jbt" firstAttribute="leading" secondItem="DkE-VK-UyY" secondAttribute="leading" id="Vhb-wU-dxX"/>
-                            <constraint firstItem="Arn-CE-Jbt" firstAttribute="top" secondItem="861-fr-hFA" secondAttribute="bottom" id="czC-78-AnI"/>
-                            <constraint firstItem="861-fr-hFA" firstAttribute="trailing" secondItem="DkE-VK-UyY" secondAttribute="trailing" id="efG-O5-Fg8"/>
-                            <constraint firstItem="Arn-CE-Jbt" firstAttribute="trailing" secondItem="DkE-VK-UyY" secondAttribute="trailing" id="ksE-Xt-ZaB"/>
+                            <constraint firstItem="Arn-CE-Jbt" firstAttribute="leading" secondItem="DkE-VK-UyY" secondAttribute="leading" constant="2" id="Vhb-wU-dxX"/>
+                            <constraint firstItem="gYo-SP-oYH" firstAttribute="leading" secondItem="DkE-VK-UyY" secondAttribute="leading" constant="2" id="Y7y-tg-qEC"/>
+                            <constraint firstItem="Arn-CE-Jbt" firstAttribute="trailing" secondItem="DkE-VK-UyY" secondAttribute="trailing" constant="-2" id="ksE-Xt-ZaB"/>
+                            <constraint firstItem="Arn-CE-Jbt" firstAttribute="top" secondItem="gYo-SP-oYH" secondAttribute="bottom" constant="5" id="oqn-90-9LA"/>
                             <constraint firstItem="nH4-ba-42m" firstAttribute="leading" secondItem="DkE-VK-UyY" secondAttribute="leading" id="p9n-le-JyE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DkE-VK-UyY"/>
@@ -97,7 +102,8 @@
                     <navigationItem key="navigationItem" id="53N-Dg-6h8"/>
                     <connections>
                         <outlet property="memoText" destination="Arn-CE-Jbt" id="5hm-kg-Jes"/>
-                        <outlet property="memoTitle" destination="861-fr-hFA" id="sVv-DF-QDf"/>
+                        <outlet property="memoTitle" destination="gYo-SP-oYH" id="iAw-5r-0KA"/>
+                        <outlet property="saveButton" destination="lEm-RC-hD1" id="Iwc-U3-Svr"/>
                         <outlet property="titleHeader" destination="xDa-x8-0nk" id="VWr-O5-khN"/>
                     </connections>
                 </viewController>
@@ -125,7 +131,12 @@
             <point key="canvasLocation" x="131.8840579710145" y="137.94642857142856"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ByI-ci-dGZ"/>
+    </inferredMetricsTieBreakers>
     <resources>
-        <image name="multiply.circle" catalog="system" width="128" height="121"/>
+        <image name="close" width="25" height="25"/>
+        <image name="plus" width="25" height="25"/>
+        <image name="save" width="25" height="25"/>
     </resources>
 </document>
