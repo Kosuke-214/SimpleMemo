@@ -21,6 +21,7 @@
 		743EDB0E24C31C0F00A4CA95 /* SimpleMemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743EDB0D24C31C0F00A4CA95 /* SimpleMemoUITests.swift */; };
 		747DF11124C4199D002D6D84 /* MemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DF11024C4199D002D6D84 /* MemoData.swift */; };
 		747DF11324C421C4002D6D84 /* MemoDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DF11224C421C4002D6D84 /* MemoDao.swift */; };
+		747DF11524C9DBBA002D6D84 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DF11424C9DBBA002D6D84 /* Util.swift */; };
 		871B9D0E3992018EFE05580B /* Pods_SimpleMemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BB25D128500FB6142C5D6F4 /* Pods_SimpleMemoTests.framework */; };
 		EF6C91AF3DFCDC1C2DD1CAFF /* Pods_SimpleMemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BB40AA659031C4B944D502C /* Pods_SimpleMemo.framework */; };
 /* End PBXBuildFile section */
@@ -68,6 +69,7 @@
 		7446B9BC3C799B143156021D /* Pods-SimpleMemo-SimpleMemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMemo-SimpleMemoUITests.release.xcconfig"; path = "Target Support Files/Pods-SimpleMemo-SimpleMemoUITests/Pods-SimpleMemo-SimpleMemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		747DF11024C4199D002D6D84 /* MemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoData.swift; sourceTree = "<group>"; };
 		747DF11224C421C4002D6D84 /* MemoDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDao.swift; sourceTree = "<group>"; };
+		747DF11424C9DBBA002D6D84 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		96A1D4A291AC6A073A18B940 /* Pods-SimpleMemo-SimpleMemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMemo-SimpleMemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-SimpleMemo-SimpleMemoUITests/Pods-SimpleMemo-SimpleMemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E82968FC62549708503C62D6 /* Pods-SimpleMemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMemo.debug.xcconfig"; path = "Target Support Files/Pods-SimpleMemo/Pods-SimpleMemo.debug.xcconfig"; sourceTree = "<group>"; };
 		FFD752714DB7B014085B3324 /* Pods-SimpleMemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMemoTests.debug.xcconfig"; path = "Target Support Files/Pods-SimpleMemoTests/Pods-SimpleMemoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				747DF11024C4199D002D6D84 /* MemoData.swift */,
 				740F251F24C324ED009316BA /* MemoEditViewController.swift */,
 				747DF11224C421C4002D6D84 /* MemoDao.swift */,
+				747DF11424C9DBBA002D6D84 /* Util.swift */,
 				740F251B24C32032009316BA /* MemoTableViewCell.swift */,
 				740F251C24C32032009316BA /* MemoTableViewCell.xib */,
 				743EDAF124C31C0D00A4CA95 /* Main.storyboard */,
@@ -426,6 +429,7 @@
 				743EDAF024C31C0D00A4CA95 /* MemoListViewController.swift in Sources */,
 				740F252024C324ED009316BA /* MemoEditViewController.swift in Sources */,
 				743EDAEC24C31C0D00A4CA95 /* AppDelegate.swift in Sources */,
+				747DF11524C9DBBA002D6D84 /* Util.swift in Sources */,
 				747DF11124C4199D002D6D84 /* MemoData.swift in Sources */,
 				743EDAEE24C31C0D00A4CA95 /* SceneDelegate.swift in Sources */,
 				740F251D24C32032009316BA /* MemoTableViewCell.swift in Sources */,

@@ -15,9 +15,10 @@ class MemoEditViewController: UIViewController {
     @IBOutlet weak var memoTitle: UITextField!
     @IBOutlet weak var memoText: UITextView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    var id: String?
     var titleText: String?
     var memo: String?
-    var index: Int?
+    private var isNeedSaveFlg = false
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -25,14 +26,18 @@ class MemoEditViewController: UIViewController {
             presentingViewController?.beginAppearanceTransition(false, animated: animated)
         }
 
-        MemoDao.getMemo("MemoData")?.forEach { data in
-            if data.title == titleText {
-                titleHeader.title = data.title
-                memoTitle.text = data.title
-                memoText.text = data.content
+        if let savedData = MemoDao.getMemo(MemoDao.MEMO_DATA) {
+            Array(savedData.values).forEach { data in
+                if data.id == id {
+                    titleHeader.title = data.title
+                    memoTitle.text = data.title
+                    memoText.text = data.content
+                }
             }
-
         }
+
+        memoTitle.delegate = self
+        memoText.delegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -48,31 +53,64 @@ class MemoEditViewController: UIViewController {
             presentingViewController?.beginAppearanceTransition(true, animated: animated)
             presentingViewController?.endAppearanceTransition()
         }
+
+        if isNeedSaveFlg {
+            saveMemoData()
+        }
     }
     
     @IBAction func onClickSave(_ sender: Any) {
-        if let saveTitle = memoTitle.text,
-            let saveMemo = memoText.text {
-
-            if var savedData: [MemoData] = MemoDao.getMemo("MemoData") {
-                savedData.append(MemoData(title: saveTitle, content: saveMemo))
-                MemoDao.saveMemo(savedData)
-            }
-
-        }
+        saveMemoData()
         var style = ToastStyle()
         style.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         self.view.makeToast("Saved!!", duration: 1, position: ToastPosition.center, style: style)
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func saveMemoData() {
+        if let saveTitle = memoTitle.text,
+            let saveMemo = memoText.text {
+
+            var saveData = Dictionary<String?, MemoData>()
+
+            if var savedData = MemoDao.getMemo(MemoDao.MEMO_DATA){
+
+                var savedFlg = false
+
+                for (id, _) in savedData {
+                    if id == self.id {
+                        savedFlg = true
+                        savedData[id]?.title = saveTitle
+                        savedData[id]?.content = saveMemo
+                        savedData[id]?.date = Util().nowDate()
+                    }
+                }
+
+                if !savedFlg {
+                    let id = Util().idGenerator()
+                    savedData[id] = MemoData(id: id, title: saveTitle, content: saveMemo, date: Util().nowDate())
+                }
+                saveData = savedData
+            }
+
+            MemoDao.saveMemo(saveData)
+            isNeedSaveFlg = false
+        }
     }
-    */
+
+}
+
+extension MemoEditViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        isNeedSaveFlg = true
+        MemoDao.saveSavedFlg(true)
+    }
+}
+
+extension MemoEditViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool  {
+        isNeedSaveFlg = true
+        MemoDao.saveSavedFlg(true)
+        return true
+    }
 
 }

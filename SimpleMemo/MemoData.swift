@@ -9,6 +9,8 @@
 import Foundation
 
 struct MemoData: Codable {
-    let title: String?
-    let content: String?
+    let id: String?
+    var title: String?
+    var content: String?
+    var date: String?
 }

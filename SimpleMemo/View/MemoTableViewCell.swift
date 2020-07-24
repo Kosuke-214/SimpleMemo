@@ -10,6 +10,7 @@ import UIKit
 
 class MemoTableViewCell: UITableViewCell {
     @IBOutlet weak var memoTitle: UILabel!
+    @IBOutlet weak var updateDate: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
