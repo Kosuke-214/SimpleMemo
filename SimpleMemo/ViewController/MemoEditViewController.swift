@@ -67,6 +67,7 @@ class MemoEditViewController: UIViewController {
         var style = ToastStyle()
         style.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         self.view.makeToast("Saved!!", duration: 1, position: ToastPosition.center, style: style)
+        MemoDao.saveSavedFlg(false)
     }
 
     private func saveMemoData() {
@@ -97,8 +98,6 @@ class MemoEditViewController: UIViewController {
 
             MemoDao.saveMemo(saveData)
             isNeedSaveFlg = false
-
-            MemoDao.saveSavedFlg(false)
 
             titleHeader.title = saveTitle
         }

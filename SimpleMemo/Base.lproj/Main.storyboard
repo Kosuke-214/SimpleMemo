@@ -41,7 +41,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" id="t4d-cG-C9m">
                             <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
-                                <segue destination="P7N-i3-NVv" kind="presentation" id="dss-Qr-5zl"/>
+                                <segue destination="P7N-i3-NVv" kind="presentation" identifier="toEditViewController" id="dss-Qr-5zl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -144,7 +144,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ByI-ci-dGZ"/>
+        <segue reference="dss-Qr-5zl"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="close" width="25" height="25"/>
@@ -152,7 +152,7 @@
         <image name="plus" width="25" height="25"/>
         <image name="save" width="25" height="25"/>
         <namedColor name="Theme">
-            <color red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.5899999737739563" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

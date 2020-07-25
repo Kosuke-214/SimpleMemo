@@ -12,6 +12,7 @@ import Toast_Swift
 class MemoListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var savedData = [MemoData]()
+    private let refreshControl = UIRefreshControl()
     var selectedID: String?
     var selectedTitle: String?
     var selectedMemo: String?
@@ -21,6 +22,8 @@ class MemoListViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(MemoListViewController.refresh(sender:)), for: .valueChanged)
 
         tableView.register(UINib(nibName: "MemoTableViewCell", bundle: nil), forCellReuseIdentifier: "MemoCell")
     }
@@ -31,14 +34,7 @@ class MemoListViewController: UIViewController {
             tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
         }
 
-        if let savedData = MemoDao.getMemo(MemoDao.MEMO_DATA) {
-            self.savedData = Array(savedData.values).sorted {
-                if let date1 = $0.date, let date2 = $1.date {
-                    return date1 > date2
-                }
-                return true
-            }
-        }
+        prepareData()
 
         self.navigationController?.navigationBar.barTintColor = UIColor(named: "Theme")
     }
@@ -75,6 +71,24 @@ class MemoListViewController: UIViewController {
             deleteModeFlg = true
         }
     }
+
+    @objc func refresh(sender: UIRefreshControl) {
+        prepareData()
+        tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+
+    private func prepareData() {
+        if let savedData = MemoDao.getMemo(MemoDao.MEMO_DATA) {
+            self.savedData = Array(savedData.values).sorted {
+                if let date1 = $0.date, let date2 = $1.date {
+                    return date1 > date2
+                }
+                return true
+            }
+        }
+    }
+
 }
 
 extension MemoListViewController: UITableViewDelegate {
