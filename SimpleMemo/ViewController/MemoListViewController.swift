@@ -50,6 +50,11 @@ class MemoListViewController: UIViewController {
                 memoEditVC.id = id
             }
             memoEditVC.delegate = self
+
+            if savedData.isEmpty {
+                tableView.setEditing(false, animated: true)
+                deleteModeFlg = true
+            }
         }
     }
 
