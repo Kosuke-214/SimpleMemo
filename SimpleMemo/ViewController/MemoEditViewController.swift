@@ -9,6 +9,10 @@
 import UIKit
 import Toast_Swift
 
+protocol SavedDelegate: class {
+    func saved()
+}
+
 class MemoEditViewController: UIViewController {
 
     @IBOutlet weak var navigation: UINavigationBar!
@@ -20,6 +24,7 @@ class MemoEditViewController: UIViewController {
     var titleText: String?
     var memo: String?
     private var isNeedSaveFlg = false
+    weak var delegate: SavedDelegate?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,8 +41,6 @@ class MemoEditViewController: UIViewController {
                 }
             }
         }
-
-//        navigation.barTintColor = UIColor(named: "Theme")
 
         memoTitle.delegate = self
         memoText.delegate = self
@@ -100,6 +103,8 @@ class MemoEditViewController: UIViewController {
             isNeedSaveFlg = false
 
             titleHeader.title = saveTitle
+
+            delegate?.saved()
         }
     }
 

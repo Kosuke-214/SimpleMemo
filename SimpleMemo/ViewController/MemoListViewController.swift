@@ -39,8 +39,8 @@ class MemoListViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor(named: "Theme")
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        tableView.reloadData()
+    override func viewWillDisappear(_ animated: Bool) {
+        selectedID = nil
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,17 +49,11 @@ class MemoListViewController: UIViewController {
             if let id = selectedID {
                 memoEditVC.id = id
             }
-            memoEditVC.presentationController?.delegate = self
+            memoEditVC.delegate = self
         }
     }
 
     @IBAction func closeEditor(segue: UIStoryboardSegue) {
-        if MemoDao.isSavedFlg() {
-            var style = ToastStyle()
-            style.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            self.view.makeToast("Saved!!", duration: 1, position: ToastPosition.center, style: style)
-            MemoDao.saveSavedFlg(false)
-        }
     }
 
     @IBAction func onClickDelete(_ sender: Any) {
@@ -124,7 +118,6 @@ extension MemoListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        //削除するだけなのでindexPath_row = indexPath.rowをする必要はない。
         if editingStyle == UITableViewCell.EditingStyle.delete {
             savedData.remove(at: indexPath.row)
 
@@ -142,14 +135,13 @@ extension MemoListViewController: UITableViewDataSource {
 
 }
 
-@available(iOS 13.0, *)
-extension MemoListViewController: UIAdaptivePresentationControllerDelegate {
-    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
-        if MemoDao.isSavedFlg() {
-            var style = ToastStyle()
-            style.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            self.view.makeToast("Saved!!", duration: 1, position: ToastPosition.center, style: style)
-            MemoDao.saveSavedFlg(false)
-        }
+extension MemoListViewController: SavedDelegate {
+    func saved() {
+        prepareData()
+        tableView.reloadData()
+
+        var style = ToastStyle()
+        style.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        self.view.makeToast("Saved!!", duration: 1, position: ToastPosition.center, style: style)
     }
 }
