@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +32,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="List" id="r91-gT-5Wd">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="delete" id="ZnD-Bz-pH2">
+                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <connections>
+                                <action selector="onClickDelete:" destination="BYZ-38-t0r" id="3Sc-X1-ksf"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" id="t4d-cG-C9m">
+                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
                                 <segue destination="P7N-i3-NVv" kind="presentation" id="dss-Qr-5zl"/>
                             </connections>
@@ -63,14 +71,17 @@
                             </textView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nH4-ba-42m">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <color key="barTintColor" name="Theme"/>
                                 <items>
                                     <navigationItem title="No Title" id="xDa-x8-0nk">
                                         <barButtonItem key="leftBarButtonItem" title="Save" image="save" id="lEm-RC-hD1">
+                                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <connections>
                                                 <action selector="onClickSave:" destination="P7N-i3-NVv" id="3ag-be-jaW"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Item" image="close" id="Loq-Er-qye">
+                                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <connections>
                                                 <segue destination="fZj-cJ-IIZ" kind="unwind" unwindAction="closeEditorWithSegue:" id="ffX-Rx-BY4"/>
                                             </connections>
@@ -103,6 +114,7 @@
                     <connections>
                         <outlet property="memoText" destination="Arn-CE-Jbt" id="5hm-kg-Jes"/>
                         <outlet property="memoTitle" destination="gYo-SP-oYH" id="iAw-5r-0KA"/>
+                        <outlet property="navigation" destination="nH4-ba-42m" id="Wmk-Et-9AJ"/>
                         <outlet property="saveButton" destination="lEm-RC-hD1" id="Iwc-U3-Svr"/>
                         <outlet property="titleHeader" destination="xDa-x8-0nk" id="VWr-O5-khN"/>
                     </connections>
@@ -136,7 +148,11 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="close" width="25" height="25"/>
+        <image name="delete" width="25" height="25"/>
         <image name="plus" width="25" height="25"/>
         <image name="save" width="25" height="25"/>
+        <namedColor name="Theme">
+            <color red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -15,6 +15,7 @@ class MemoListViewController: UIViewController {
     var selectedID: String?
     var selectedTitle: String?
     var selectedMemo: String?
+    var deleteModeFlg = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,8 @@ class MemoListViewController: UIViewController {
                 return true
             }
         }
+
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "Theme")
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -63,6 +66,15 @@ class MemoListViewController: UIViewController {
         }
     }
 
+    @IBAction func onClickDelete(_ sender: Any) {
+        if deleteModeFlg == true {
+            tableView.setEditing(true, animated: true)
+            deleteModeFlg = false
+        } else {
+            tableView.setEditing(false, animated: true)
+            deleteModeFlg = true
+        }
+    }
 }
 
 extension MemoListViewController: UITableViewDelegate {
@@ -73,7 +85,6 @@ extension MemoListViewController: UITableViewDelegate {
         if selectedID != nil && selectedMemo != nil && selectedTitle != nil {
             performSegue(withIdentifier: "toEditViewController", sender: nil)
         }
-
     }
 }
 
@@ -94,6 +105,26 @@ extension MemoListViewController: UITableViewDataSource {
         return memoCell
     }
 
+    func tableView(_ tableView: UITableView,canEditRowAt indexPath: IndexPath) -> Bool{
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        //削除するだけなのでindexPath_row = indexPath.rowをする必要はない。
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            savedData.remove(at: indexPath.row)
+
+            let group = Dictionary(grouping: savedData) { $0.id }
+            var saveData = Dictionary<String?, MemoData>()
+
+            for (key, value) in group {
+                saveData[key] = value[0]
+            }
+            MemoDao.saveMemo(saveData)
+
+            self.tableView.reloadData()
+        }
+    }
 
 }
 

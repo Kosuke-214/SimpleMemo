@@ -11,6 +11,7 @@ import Toast_Swift
 
 class MemoEditViewController: UIViewController {
 
+    @IBOutlet weak var navigation: UINavigationBar!
     @IBOutlet weak var titleHeader: UINavigationItem!
     @IBOutlet weak var memoTitle: UITextField!
     @IBOutlet weak var memoText: UITextView!
@@ -35,6 +36,8 @@ class MemoEditViewController: UIViewController {
                 }
             }
         }
+
+//        navigation.barTintColor = UIColor(named: "Theme")
 
         memoTitle.delegate = self
         memoText.delegate = self
@@ -94,6 +97,10 @@ class MemoEditViewController: UIViewController {
 
             MemoDao.saveMemo(saveData)
             isNeedSaveFlg = false
+
+            MemoDao.saveSavedFlg(false)
+
+            titleHeader.title = saveTitle
         }
     }
 
