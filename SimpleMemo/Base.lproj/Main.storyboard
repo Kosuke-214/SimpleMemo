@@ -46,6 +46,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deleteButton" destination="ZnD-Bz-pH2" id="Age-R3-wvX"/>
                         <outlet property="tableView" destination="kVS-vf-YbD" id="ege-nl-c61"/>
                         <segue destination="P7N-i3-NVv" kind="presentation" identifier="toEditViewController" id="ByI-ci-dGZ"/>
                     </connections>
@@ -62,7 +63,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Arn-CE-Jbt">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Arn-CE-Jbt">
                                 <rect key="frame" x="2" y="111.5" width="410" height="696.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>

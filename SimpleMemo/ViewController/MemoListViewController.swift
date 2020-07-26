@@ -11,6 +11,7 @@ import Toast_Swift
 
 class MemoListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
     private var savedData = [MemoData]()
     private let refreshControl = UIRefreshControl()
     var selectedID: String?
@@ -34,6 +35,8 @@ class MemoListViewController: UIViewController {
             tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
         }
 
+        deleteButton.isEnabled = false
+
         prepareData()
 
         self.navigationController?.navigationBar.barTintColor = UIColor(named: "Theme")
@@ -51,9 +54,12 @@ class MemoListViewController: UIViewController {
             }
             memoEditVC.delegate = self
 
-            if savedData.isEmpty {
-                tableView.setEditing(false, animated: true)
-                deleteModeFlg = true
+            tableView.setEditing(false, animated: true)
+            deleteModeFlg = true
+            if #available(iOS 13.0, *) {
+                deleteButton.tintColor = .label
+            } else {
+                deleteButton.tintColor = .black
             }
         }
     }
@@ -65,9 +71,15 @@ class MemoListViewController: UIViewController {
         if deleteModeFlg == true {
             tableView.setEditing(true, animated: true)
             deleteModeFlg = false
+            deleteButton.tintColor = .red
         } else {
             tableView.setEditing(false, animated: true)
             deleteModeFlg = true
+            if #available(iOS 13.0, *) {
+                deleteButton.tintColor = .label
+            } else {
+                deleteButton.tintColor = .black
+            }
         }
     }
 
@@ -84,6 +96,9 @@ class MemoListViewController: UIViewController {
                     return date1 > date2
                 }
                 return true
+            }
+            if !self.savedData.isEmpty {
+                deleteButton.isEnabled = true
             }
         }
     }
@@ -133,6 +148,17 @@ extension MemoListViewController: UITableViewDataSource {
                 saveData[key] = value[0]
             }
             MemoDao.saveMemo(saveData)
+
+            if savedData.isEmpty {
+                tableView.setEditing(false, animated: true)
+                deleteModeFlg = true
+                if #available(iOS 13.0, *) {
+                    deleteButton.tintColor = .label
+                } else {
+                    deleteButton.tintColor = .black
+                }
+                deleteButton.isEnabled = false
+            }
 
             self.tableView.reloadData()
         }
