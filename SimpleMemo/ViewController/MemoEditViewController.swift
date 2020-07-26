@@ -94,6 +94,7 @@ class MemoEditViewController: UIViewController {
 
                 if !savedFlg {
                     let id = Util().idGenerator()
+                    self.id = id
                     savedData[id] = MemoData(id: id, title: saveTitle, content: saveMemo, date: Util().nowDate())
                 }
                 saveData = savedData
